@@ -40,7 +40,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	GetClientName(killer, killerName, sizeof(killerName));
 
 	// If the killer is on red team, don't broadcast to chat
-	if ( GetClientTeam(killer) == 2 )
+	if ( GetClientTeam(killer) == 2 && killer != victim )
 	{
 		return Plugin_Continue;
 	}
