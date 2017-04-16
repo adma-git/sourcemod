@@ -40,13 +40,13 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	GetClientName(killer, killerName, sizeof(killerName));
 
 	// If the killer is on red team, don't broadcast to chat
-	if ( GetClientTeam(killer) == 2 && killer != victim )
+	if ( GetClientTeam(killer) == 2 )
 	{
 		return Plugin_Continue;
 	}
 
 	// If a blue player kills a red player
-	else if ( GetClientTeam(victim) == 2 )
+	else if ( GetClientTeam(victim) == 2 && killer != victim )
 	{
 		if ( TF2Jail_IsRebel(victim) )
 		{
@@ -70,7 +70,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	}
 
 	// If a blue player kills a blue player
-	else if ( GetClientTeam(victim) == 3 )
+	else if ( GetClientTeam(victim) == 3 && killer != victim )
 	{
 		if ( TF2Jail_IsWarden(victim) )
 		{
