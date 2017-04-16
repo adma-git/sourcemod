@@ -66,7 +66,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 			killerRole = "GUARD";
 		}
 
-		Format(killString, sizeof(killString), "{green}[KILL] {red}%s {darkred}(%s) {normal}was killed by {blue}%s {darkblue}(%s) {normal}using {unique}%s", victimName, victimRole, killerName, killerRole, killerWeapon);
+		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {darkblue}(%s) {default}killed {red}%s {darkred}(%s) {default}using {unique}%s", killerName, killerRole, victimName, victimRole, killerWeapon);
 	}
 
 	// If a blue player kills a blue player
@@ -90,7 +90,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 			killerRole = "GUARD";
 		}
 
-		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {darkblue}(%s) {normal}was killed by {blue}%s {darkblue}(%s) {normal}using {unique}%s", victimName, victimRole, killerName, killerRole, killerWeapon);
+		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {darkblue}(%s) {normal}killed {blue}%s {darkblue}(%s) {normal}using {unique}%s", killerName, killerRole, victimName, victimRole, killerWeapon);
 	}
 
 	// Print the killString and continue
