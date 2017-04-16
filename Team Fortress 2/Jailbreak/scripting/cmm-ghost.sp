@@ -12,7 +12,8 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	RegConsoleCmd("sm_ghost", Command_Ghost, "Send messages to all players from beyond the grave...")
+	RegConsoleCmd("sm_ghost", Command_Ghost, "Send messages to all players from beyond the grave...");
+	RegConsoleCmd("sm_g", Command_Ghost, "Send messages to all players from beyond the grave...");
 }
 
 public Action Command_Ghost(int client, int args)
