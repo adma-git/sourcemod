@@ -21,7 +21,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	// The string that is printed at the end
 	char killString[512];
 
-	// The roles of each player involved (REBEL, WARDEN, GUARD, or PRISONER)
+	// The roles of each player involved (WARDEN, GUARD, REBEL, PRISONER, or FREEDAY)
 	char victimRole[16];
 	char killerRole[16];
 
@@ -51,6 +51,10 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 		if ( TF2Jail_IsRebel(victim) )
 		{
 			victimRole = "REBEL";
+		}
+		else if ( TF2Jail_IsFreeday(victim) )
+		{
+			victimRole = "FREEDAY";
 		}
 		else
 		{
