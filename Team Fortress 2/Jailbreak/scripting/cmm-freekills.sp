@@ -36,10 +36,10 @@ public Action Command_Freekill(int client, int args)
 		return Plugin_Handled;
 	}
 
-	// Target the player specified in arg1 using console as the targetter (unsure if this is dangerous or not)
+	// Target the player specified in arg1, ignoring immunity values
 	char arg1[MAX_NAME_LENGTH];
 	GetCmdArg(1, arg1, sizeof(arg1));
-	int target = FindTarget(0, arg1);
+	int target = FindTarget(client, arg1, true, false);
 	if (target == -1)
 	{
 		return Plugin_Handled;
