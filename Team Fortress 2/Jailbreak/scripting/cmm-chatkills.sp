@@ -7,7 +7,7 @@ public Plugin myinfo =
 	name = "[TF2] CMM Jailbreak ChatKills",
 	author = "Astrak",
 	description = "Notify the chat when someone is killed based on team and role",
-	version = "1.0",
+	version = "1.1",
 	url = "https://github.com/astrakk/"
 };
 
@@ -70,7 +70,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 			killerRole = "GUARD";
 		}
 
-		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {darkblue}(%s) {default}killed {red}%s {darkred}(%s) {default}using {unique}%s", killerName, killerRole, victimName, victimRole, killerWeapon);
+		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {cornflowerblue}(%s) {default}killed {red}%s {coral}(%s) {default}using {unique}%s", killerName, killerRole, victimName, victimRole, killerWeapon);
 	}
 
 	// If a blue player kills a blue player
@@ -94,7 +94,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 			killerRole = "GUARD";
 		}
 
-		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {darkblue}(%s) {normal}killed {blue}%s {darkblue}(%s) {normal}using {unique}%s", killerName, killerRole, victimName, victimRole, killerWeapon);
+		Format(killString, sizeof(killString), "{green}[KILL] {blue}%s {cornflowerblue}(%s) {normal}killed {blue}%s {darkblue}(%s) {normal}using {unique}%s", killerName, killerRole, victimName, victimRole, killerWeapon);
 	}
 
 	// Print the killString and continue
