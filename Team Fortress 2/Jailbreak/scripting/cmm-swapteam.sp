@@ -1,5 +1,4 @@
 #include <sourcemod>
-#include <tf2>
 #include <morecolors>
 
 public Plugin myinfo =
