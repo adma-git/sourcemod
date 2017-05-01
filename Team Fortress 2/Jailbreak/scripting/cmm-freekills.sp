@@ -99,17 +99,20 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	int killer = GetClientOfUserId(event.GetInt("attacker"));
 
 	// Tracking the kills for each player
-	if ( GetClientTeam(killer) == 3 )
+	if ( killer != victim && killer != 0 && victim != 0 )
 	{
-		if ( GetClientTeam(victim) == 3 )
+		if ( GetClientTeam(killer) == 3 )
 		{
-			i_blueKills[killer]++;
-			return Plugin_Continue;
-		}
-		else if ( GetClientTeam(victim) == 2 )
-		{
-			i_redKills[killer]++;
-			return Plugin_Continue;
+			if ( GetClientTeam(victim) == 3 )
+			{
+				i_blueKills[killer]++;
+				return Plugin_Continue;
+			}
+			else if ( GetClientTeam(victim) == 2 )
+			{
+				i_redKills[killer]++;
+				return Plugin_Continue;
+			}
 		}
 	}
 	return Plugin_Continue;
