@@ -39,8 +39,8 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	GetClientName(victim, victimName, sizeof(victimName));
 	GetClientName(killer, killerName, sizeof(killerName));
 
-	// If the killer is on red team, don't broadcast to chat
-	if ( GetClientTeam(killer) == 2 )
+	// If the killer is on red team or is the console, don't broadcast to chat
+	if ( GetClientTeam(killer) == 2 || killer == 0)
 	{
 		return Plugin_Continue;
 	}
