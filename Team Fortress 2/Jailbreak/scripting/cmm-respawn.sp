@@ -13,8 +13,8 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	RegAdminCmd("sm_rplayer", Command_Respawn, ADMFLAG_SLAY, "TRespawn a player");
-	RegAdminCmd("sm_respawn", Command_Respawn, ADMFLAG_SLAY, "TRespawn a player");
+	RegAdminCmd("sm_rplayer", Command_Respawn, ADMFLAG_SLAY, "Respawn a player");
+	RegAdminCmd("sm_respawn", Command_Respawn, ADMFLAG_SLAY, "Respawn a player");
 
 	LoadTranslations("common.phrases");
 }
