@@ -105,6 +105,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 bool IsValidClient(int client, bool bAllowDead = true, bool bAllowAlive = true, bool bAllowBots = true)
 {
 	if(	!(1 <= client <= MaxClients) || 			/* Is the client a player? */
+	   	(IsClientInGame(client)) ||				/* Is the client in-game? */
 		(IsPlayerAlive(client) && !bAllowAlive) || 	/* Is the client allowed to be alive? */
 		(!IsPlayerAlive(client) && !bAllowDead) || 	/* Is the client allowed to be dead? */
 		(IsFakeClient(client) && !bAllowBots) )		/* Is the client allowed to be a bot? */
