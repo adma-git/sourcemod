@@ -39,14 +39,14 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	GetClientName(victim, victimName, sizeof(victimName));
 	GetClientName(killer, killerName, sizeof(killerName));
 
-	// If the killer is on red team or is the console, don't broadcast to chat
-	if ( GetClientTeam(killer) == 2 )
+	// Don't broadcast to chat if the following conditions are met
+	if ( GetClientTeam(killer) == 2 || !IsValidClient(victim) || !IsValidClient(killer) || killer == victim )
 	{
 		return Plugin_Continue;
 	}
 
 	// If a blue player kills a red player
-	else if ( GetClientTeam(victim) == 2 && killer != victim && killer != 0 && victim != 0 )
+	else if ( GetClientTeam(victim) == 2 )
 	{
 		if ( TF2Jail_IsRebel(victim) )
 		{
@@ -74,7 +74,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	}
 
 	// If a blue player kills a blue player
-	else if ( GetClientTeam(victim) == 3 && killer != victim )
+	else if ( GetClientTeam(victim) == 3 )
 	{
 		if ( TF2Jail_IsWarden(victim) )
 		{
@@ -102,3 +102,15 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	return Plugin_Continue;
 }
 
+bool IsValidClient(int client, bool bAllowDead = true, bool bAllowAlive = true, bool bAllowBots = true)
+{
+	if(	!(1 <= client <= MaxClients) || 			/* Is the client a player? */
+		(IsPlayerAlive(client) && !bAllowAlive) || 	/* Is the client allowed to be alive? */
+		(!IsPlayerAlive(client) && !bAllowDead) || 	/* Is the client allowed to be dead? */
+		(IsFakeClient(client) && !bAllowBots) )		/* Is the client allowed to be a bot? */
+	{
+		return false;
+	}
+	
+	return true;	
+}
