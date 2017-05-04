@@ -53,7 +53,7 @@ public Action Command_Freekill(int client, int args)
 	
 	if ( client == target )
 	{
-		ReplyToCommand(client, "[SM] Error: you cannot report yourself");
+		ReplyToCommand(client, "[SM] Error: you cannot accuse yourself");
 		return Plugin_Handled;
 	}
 
@@ -99,7 +99,7 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	int killer = GetClientOfUserId(event.GetInt("attacker"));
 
 	// Tracking the kills for each player
-	if ( killer != victim && killer != 0 && victim != 0 )
+	if ( killer != victim && IsValidClient(killer) && IsValidClient(victim) )
 	{
 		if ( GetClientTeam(killer) == 3 )
 		{
@@ -118,3 +118,16 @@ public Action Event_PlayerDeath(Event event, const char[] name, bool dontBroadca
 	return Plugin_Continue;
 }
 
+bool IsValidClient(int client, bool bAllowDead = true, bool bAllowAlive = true, bool bAllowBots = true)
+{
+	if(	!(1 <= client <= MaxClients) || 			/* Is the client a player? */
+	   	(IsClientInGame(client)) ||				/* Is the client in-game? */
+		(IsPlayerAlive(client) && !bAllowAlive) || 	/* Is the client allowed to be alive? */
+		(!IsPlayerAlive(client) && !bAllowDead) || 	/* Is the client allowed to be dead? */
+		(IsFakeClient(client) && !bAllowBots) )		/* Is the client allowed to be a bot? */
+	{
+		return false;
+	}
+	
+	return true;	
+}
